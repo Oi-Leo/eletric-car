@@ -1,21 +1,23 @@
-package com.example.eletriccar
+package com.example.eletriccar.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.eletriccar.R
 
-class MainActivity : AppCompatActivity() {
+class AutonomyCalculateActivity : AppCompatActivity() {
 
     lateinit var price: EditText
+    lateinit var results: TextView
     lateinit var mileage: EditText
     lateinit var btnCalculate: Button
-    lateinit var results: TextView
-
+    lateinit var btnClose: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_autonomy_calculate)
         setupView()
         setupListeners()
     }
@@ -25,11 +27,15 @@ class MainActivity : AppCompatActivity() {
         mileage = findViewById(R.id.et_mileage)
         price = findViewById(R.id.et_price_kwh)
         btnCalculate = findViewById(R.id.btn_calculate)
+        btnClose = findViewById(R.id.iv_close)
     }
 
     fun setupListeners() {
         btnCalculate.setOnClickListener {
             calculate()
+        }
+        btnClose.setOnClickListener {
+            finish()
         }
     }
 

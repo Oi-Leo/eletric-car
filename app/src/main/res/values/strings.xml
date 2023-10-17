@@ -10,4 +10,5 @@
     <string name="price_kwh">Price per Kwh</string>
     <string name="mileage">Mileage</string>
     <string name="calculate">Calculate</string>
+    <string name="calculate_autonomy">Calculate Autonomy</string>
 </resources>
