@@ -11,4 +11,6 @@
     <string name="mileage">Mileage</string>
     <string name="calculate">Calculate</string>
     <string name="calculate_autonomy">Calculate Autonomy</string>
+    <string name="no_wifi">Sorry, no wi-fi conection</string>
+    <string name="response_error">Something get wrong, try it later</string>
 </resources>
