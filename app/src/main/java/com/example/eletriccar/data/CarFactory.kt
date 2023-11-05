@@ -11,7 +11,8 @@ object CarFactory {
             battery = "300 kWh",
             power = "200cv",
             refill = "42 Min",
-            urlPhoto = "www.google.com.br"
+            urlPhoto = "www.google.com.br",
+            isFavorite = false
         ),
         Car(
             id = 2,
@@ -19,7 +20,8 @@ object CarFactory {
             battery = "2400 kWh",
             power = "57cv",
             refill = "30 Min",
-            urlPhoto = "www.google.com.br"
+            urlPhoto = "www.google.com.br",
+            isFavorite = false
         ),
         Car(
             id = 3,
@@ -27,7 +29,8 @@ object CarFactory {
             battery = "490 kWh",
             power = "789cv",
             refill = "12 Hours",
-            urlPhoto = "www.google.com.br"
+            urlPhoto = "www.google.com.br",
+            isFavorite = false
         )
     )
 }

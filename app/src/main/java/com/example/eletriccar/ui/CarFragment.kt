@@ -1,5 +1,6 @@
 package com.example.eletriccar.ui
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -21,6 +22,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eletriccar.R
 import com.example.eletriccar.data.CarFactory
 import com.example.eletriccar.data.CarsApi
+import com.example.eletriccar.data.local.CarsContract
+import com.example.eletriccar.data.local.CarsContract.CarEntry.COLUMN_NAME_BATTERY
+import com.example.eletriccar.data.local.CarsContract.CarEntry.COLUMN_NAME_POWER
+import com.example.eletriccar.data.local.CarsContract.CarEntry.COLUMN_NAME_PRICE
+import com.example.eletriccar.data.local.CarsContract.CarEntry.COLUMN_NAME_REFILL
+import com.example.eletriccar.data.local.CarsContract.CarEntry.COLUMN_NAME_URL_PHOTO
+import com.example.eletriccar.data.local.CarsContract.CarEntry.TABLE_NAME
+import com.example.eletriccar.data.local.CarsDbHelper
 import com.example.eletriccar.domain.Car
 import com.example.eletriccar.ui.adapter.CarAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -134,6 +143,9 @@ class CarFragment : Fragment() {
             isVisible = true
             adapter = carAdapter
         }
+        carAdapter.carItemLister = { car ->
+            val battery = car.battery
+        }
     }
 
     fun setupListeners() {
@@ -244,7 +256,8 @@ class CarFragment : Fragment() {
                         battery = battery,
                         power = power,
                         refill = refill,
-                        urlPhoto = urlPhoto
+                        urlPhoto = urlPhoto,
+                        isFavorite = false
                     )
                     carsArray.add(model)
                 }
@@ -257,4 +270,30 @@ class CarFragment : Fragment() {
             }
         }
     }
+
+    fun saveOnDataBase(car: Car) {
+        val dbHelper = CarsDbHelper(requireContext())
+        val db = dbHelper.writableDatabase
+
+        val values = ContentValues().apply {
+            put(
+                COLUMN_NAME_PRICE, car.price
+            )
+            put(
+                COLUMN_NAME_BATTERY, car.battery
+            )
+            put(
+                COLUMN_NAME_POWER, car.power
+            )
+            put(
+                COLUMN_NAME_REFILL, car.refill
+            )
+            put(
+                COLUMN_NAME_URL_PHOTO, car.urlPhoto
+            )
+        }
+
+        val newRegister = db?.insert(TABLE_NAME, null, values)
+    }
+
 }
